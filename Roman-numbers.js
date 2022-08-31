@@ -1,37 +1,25 @@
 var romanToInt = function (s) {
-  let sum = 0;
+  let result = 0;
 
-  s = s.toUpperCase().split('');
-  console.log(s);
-  for (const iterator of s) {
-    switch (iterator) {
-      case 'I':
-        sum = sum + 1;
-        break;
-      case 'V':
-        sum = sum + 5;
-        break;
-      case 'X':
-        sum = sum + 10;
-        break;
-      case 'L':
-        sum = sum + 50;
-        break;
-      case 'C':
-        sum = sum + 100;
-        break;
-      case 'D':
-        sum = sum + 500;
-        break;
-      case 'm':
-        sum = sum + 1000;
-        break;
-
-      default:
-        break;
+  const sym = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  };
+  for (let i = 0; i < s.length; i++) {
+    const cur = sym[s[i]];
+    const next = sym[s[i + 1]];
+    if (cur < next) {
+      result += next - cur;
+    } else {
+      result += cur;
     }
   }
-  console.log(sum) ;
+  return result;
 };
 
-romanToInt("XXVII");
+romanToInt('XXVII');
